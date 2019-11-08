@@ -229,9 +229,11 @@ console.log(removeChar("Battle of the Vowels: Hawaii vs. Grozny", "aeiou"));
 // console.log(products([1, 3, 9, 4]))
 
 //11. 2D arr
-function oSetter(twoDArr, copy) {
-  // const copy = twoDArr.map(item => item);
-  // console.log(copy)
+function oSetter(twoDArr) {
+	//2D Arrays are unique in how they need to be copied. One way to do so is below:
+	//(can also use recursion)
+	const copy = JSON.parse(JSON.stringify(twoDArr));
+  console.log('copy before: ',copy)
 
   //For Each Sub Array
   for (let l=0; l<twoDArr.length; l++) {
@@ -243,8 +245,7 @@ function oSetter(twoDArr, copy) {
       if (twoDArr[l][i] === 0) {
   
         //change the row to 0s
-        for (let j=0; j<twoDArr[l].length; j++) {
-  
+        for (let j=0; j<twoDArr[l].length; j++) {  
           //there may be a more efficient way to do this
           copy[l].splice(j, 1, 0)
         }
@@ -257,7 +258,7 @@ function oSetter(twoDArr, copy) {
       // console.log({twoDArr}, {copy})
     }
   }
-  return copy;
+  console.log('copy after: ', copy)
 } 
 
 const twoDInput = [
@@ -267,11 +268,12 @@ const twoDInput = [
   [1,0,1,1,1],
   [1,1,1,1,1]
 ];
-const copy = [
-  [1,0,1,1,0],
-  [0,1,1,1,0],
-  [1,1,1,1,1],
-  [1,0,1,1,1],
-  [1,1,1,1,1]
-];
-console.log(oSetter(twoDInput, copy));
+const copy = [...twoDInput]
+// const copy = [
+//   [1,0,1,1,0],
+//   [0,1,1,1,0],
+//   [1,1,1,1,1],
+//   [1,0,1,1,1],
+//   [1,1,1,1,1]
+// ];
+oSetter(twoDInput);
